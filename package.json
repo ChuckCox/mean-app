@@ -9,10 +9,11 @@
   "scripts": {
     "start": "node server/server.js",
     "debug": "npm-run-all --parallel client-reload-proxy inspector",
-    "test": "nyc mocha --exit",
+    "test": "nyc mocha test --recursive --exit",
     "dev": "npm-run-all --parallel client-reload-proxy server-reload",
     "build": "webpack --progress --config webpack.prod.js",
-    "lint": "eslint src",
+    "lint": "eslint --ignore-path .gitignore .",
+    "check-coverage": "nyc report --check-coverage --lines 100",
     "postinstall": "npm run build; npm prune --production",
     "client-reload": "webpack-dev-server --host 0.0.0.0 --history-api-fallback --progress --inline --config webpack.dev-standalone.js",
     "client-reload-proxy": "webpack-dev-server --host 0.0.0.0 --history-api-fallback --inline --config webpack.dev-proxy.js",
